@@ -22,6 +22,7 @@ if [[ "$#" -eq 1 && "$1" == "-l" ]]; then
         ln -s /var/log/tomcat8/application.log application.log
         ln -s /var/log/tomcat8/catalina.out catalina.out
         ln -s /var/log/tomcat8/localhost_access_log.txt
+        cd ..
         chown -R ec2-user logs
     fi
 fi
