@@ -14,3 +14,14 @@ cd /usr/local/bin
 rm -r lnav
 ln -s /opt/lnav/lnav lnav
 
+if [[ "$#" -eq 1 && "$1" == "-l" ]]; then
+    cd /home/ec2-user
+    if [[ ! -d logs ]]; then
+        mkdir logs
+        cd logs
+        ln -s /var/log/tomcat8/application.log application.log
+        ln -s /var/log/tomcat8/catalina.out catalina.out
+        ln -s /var/log/tomcat8/localhost_access_log.txt
+        chown -R ec2-user logs
+    fi
+fi
