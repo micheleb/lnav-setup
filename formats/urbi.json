@@ -1,0 +1,42 @@
+{
+    "urbi": {
+        "title": "Urbi Log Format",
+        "description": "Log format used by Urbi's BE",
+        "url": "http://urbi.co",
+        "regex": {
+            "pattern": {
+                "pattern": "^(?<timestamp>\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2},\\d{3}) (?<alert_level>\\w+)\\s+(\\[(?<ip>[\\d.]+)\\s+\\| (?<platform>\\w+) v(?<build>[\\w.]+) \\| (?<deviceId>[\\w\\-\\/]+)\\s+\\| (?<requestLine>\\w+\\s+[^\\]]+)\\]\\s+(?<class>\\w+)|(?<classNoInfo>\\w+)) - (?<body>.*)$"
+            }
+        },
+        "level-field": "alert_level",
+        "level": {
+            "info": "INFO",
+            "error": "ERROR",
+            "warning": "WARN",
+            "debug": "DEBUG",
+            "info": "INFO"
+        },
+        "value": {
+            "alert_level": { "kind": "string", "identifier": true },
+            "ip": { "kind": "string", "identifier": true },
+            "platform": { "kind": "string", "identifier": true },
+            "build": { "kind": "string", "identifier": true },
+            "deviceId": { "kind": "string", "identifier": true },
+            "requestLine": { "kind": "string", "identifier": true },
+            "class": { "kind": "string", "identifier": true },
+            "classNoInfo": { "kind": "string", "identifier": true },
+            "body": { "kind": "string" }
+        },
+        "sample": [
+            {
+                "line": "2017-05-24 10:17:18,003 INFO [192.168.0.7 | android vxxx | N/A | GET /ride/indigo]  JWTInterceptor - new request - lang: en, userId: 823574372141113344"
+            },
+            {
+                "line": "2017-05-24 10:17:18,003 DEBUG [192.168.0.7 | android v141 | bb2ace4109a83d2e | GET /reservation/car2go]  PoolingHttpClientConnectionManager - Connection request: [route: {s}->https://www.car2go.com:443][total kept alive: 1; route allocated: 1 of 20; total allocated: 1 of 50]"
+            },
+            {
+                "line": "2017-05-24 10:16:12,603 INFO   RequestMappingHandlerMapping - Mapped \"{[/health]}\" onto public java.util.Map co.urbi.web.controller.support.DefaultController.health()"
+            }
+        ]
+    }
+}
